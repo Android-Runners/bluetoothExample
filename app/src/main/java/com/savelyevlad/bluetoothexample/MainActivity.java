@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -73,17 +74,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void buttonDiscoveryAction() {
+        Toast.makeText(getApplicationContext(), "77", Toast.LENGTH_LONG).show();
         bluetoothAdapter.startDiscovery();
+        Toast.makeText(getApplicationContext(), "79", Toast.LENGTH_LONG).show();
     }
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Toast.makeText(getApplicationContext(), "85", Toast.LENGTH_LONG).show();
             String action = intent.getAction();
             if(BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                addElementToList(device.getName() + " " + device.getAddress());
+                Toast.makeText(getApplicationContext(), device.getAddress(), Toast.LENGTH_LONG).show();
+//                addElementToList(device.getName() + " " + device.getAddress());
             }
+//            Toast.makeText(getApplicationContext(), "91", Toast.LENGTH_LONG).show();
         }
     };
 
